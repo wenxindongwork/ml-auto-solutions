@@ -36,7 +36,9 @@ def load_file_from_gcs(gs_file_path):
 
 
 @task
-def run_workload(workload_file_name: str, mantaray_gcs_bucket:str = MANTARAY_G3_GS_BUCKET):
+def run_workload(
+    workload_file_name: str, mantaray_gcs_bucket: str = MANTARAY_G3_GS_BUCKET
+):
   with tempfile.TemporaryDirectory() as tmpdir:
     cmds = (
         f"cd {tmpdir}",
