@@ -107,12 +107,14 @@ with models.DAG(
       embedding_dim=embedding_dim,
       train_steps=10000,
       extraFlags="--mode=train",
-      is_pod=False,
+      is_pod=True,
       is_pjrt=True,
       network=V5_NETWORKS,
       subnetwork=V5P_SUBNETWORKS,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
+
+
   # embedding_dim = 64
   # tf_dlrm_v5p_64 = tf_config.get_tf_dlrm_config(
   #     project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
