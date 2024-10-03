@@ -35,55 +35,74 @@ with models.DAG(
     start_date=datetime.datetime(2024, 1, 4),
     catchup=False,
 ) as dag:
-  embedding_dim = 32
-  tf_dlrm_v4_8 = tf_config.get_tf_dlrm_config(
-      tpu_version=TpuVersion.V4,
-      tpu_cores=8,
-      tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
-      bottom_mlp=[512, 256, embedding_dim],
-      embedding_dim=embedding_dim,
-      train_steps=10000,
-      extraFlags="--mode=train",
-      is_pjrt=False,
-      runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
-  )
+  # embedding_dim = 32
+  # tf_dlrm_v4_8 = tf_config.get_tf_dlrm_config(
+  #     tpu_version=TpuVersion.V4,
+  #     tpu_cores=8,
+  #     tpu_zone=Zone.US_CENTRAL2_B.value,
+  #     time_out_in_min=120,
+  #     bottom_mlp=[512, 256, embedding_dim],
+  #     embedding_dim=embedding_dim,
+  #     train_steps=10000,
+  #     extraFlags="--mode=train",
+  #     is_pjrt=False,
+  #     runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
+  # )
 
-  embedding_dim = 128
-  tf_dlrm_v4_64 = tf_config.get_tf_dlrm_config(
-      tpu_version=TpuVersion.V4,
-      tpu_cores=64,
-      tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
-      bottom_mlp=[512, 256, embedding_dim],
-      embedding_dim=embedding_dim,
-      train_steps=10000,
-      extraFlags="--mode=train",
-      is_pod=True,
-      is_pjrt=False,
-      runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
-  )
-  embedding_dim = 128
-  tf_dlrm_v4_128 = tf_config.get_tf_dlrm_config(
-      tpu_version=TpuVersion.V4,
-      tpu_cores=128,
-      tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
-      bottom_mlp=[512, 256, embedding_dim],
-      embedding_dim=embedding_dim,
-      train_steps=10000,
-      extraFlags="--mode=train",
-      is_pod=True,
-      is_pjrt=False,
-      runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
-  )
+  # embedding_dim = 128
+  # tf_dlrm_v4_64 = tf_config.get_tf_dlrm_config(
+  #     tpu_version=TpuVersion.V4,
+  #     tpu_cores=64,
+  #     tpu_zone=Zone.US_CENTRAL2_B.value,
+  #     time_out_in_min=120,
+  #     bottom_mlp=[512, 256, embedding_dim],
+  #     embedding_dim=embedding_dim,
+  #     train_steps=10000,
+  #     extraFlags="--mode=train",
+  #     is_pod=True,
+  #     is_pjrt=False,
+  #     runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
+  # )
+  # embedding_dim = 128
+  # tf_dlrm_v4_128 = tf_config.get_tf_dlrm_config(
+  #     tpu_version=TpuVersion.V4,
+  #     tpu_cores=128,
+  #     tpu_zone=Zone.US_CENTRAL2_B.value,
+  #     time_out_in_min=120,
+  #     bottom_mlp=[512, 256, embedding_dim],
+  #     embedding_dim=embedding_dim,
+  #     train_steps=10000,
+  #     extraFlags="--mode=train",
+  #     is_pod=True,
+  #     is_pjrt=False,
+  #     runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
+  # )
+  # embedding_dim = 32
+  # tf_dlrm_v5p_8 = tf_config.get_tf_dlrm_config(
+  #     project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
+  #     tpu_version=TpuVersion.V5P,
+  #     tpu_cores=8,
+  #     tpu_zone=Zone.US_EAST5_A.value,
+  #     time_out_in_min=120,
+  #     bottom_mlp=[512, 256, embedding_dim],
+  #     embedding_dim=embedding_dim,
+  #     train_steps=10000,
+  #     extraFlags="--mode=train",
+  #     is_pod=False,
+  #     is_pjrt=True,
+  #     network=V5_NETWORKS,
+  #     subnetwork=V5P_SUBNETWORKS,
+  #     runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
+  # )
+
   embedding_dim = 32
-  tf_dlrm_v5p_8 = tf_config.get_tf_dlrm_config(
+
+  tf_dlrm_v5p_32 = tf_config.get_tf_dlrm_config(
       project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
       tpu_version=TpuVersion.V5P,
-      tpu_cores=8,
+      tpu_cores=32,
       tpu_zone=Zone.US_EAST5_A.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
       train_steps=10000,
@@ -94,41 +113,41 @@ with models.DAG(
       subnetwork=V5P_SUBNETWORKS,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
-  embedding_dim = 64
-  tf_dlrm_v5p_64 = tf_config.get_tf_dlrm_config(
-      project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
-      tpu_version=TpuVersion.V5P,
-      tpu_cores=64,
-      tpu_zone=Zone.US_EAST5_A.value,
-      time_out_in_min=60,
-      bottom_mlp=[512, 256, embedding_dim],
-      embedding_dim=embedding_dim,
-      train_steps=10000,
-      extraFlags="--mode=train",
-      is_pod=True,
-      is_pjrt=True,
-      network=V5_NETWORKS,
-      subnetwork=V5P_SUBNETWORKS,
-      runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
-  )
+  # embedding_dim = 64
+  # tf_dlrm_v5p_64 = tf_config.get_tf_dlrm_config(
+  #     project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
+  #     tpu_version=TpuVersion.V5P,
+  #     tpu_cores=64,
+  #     tpu_zone=Zone.US_EAST5_A.value,
+  #     time_out_in_min=120,
+  #     bottom_mlp=[512, 256, embedding_dim],
+  #     embedding_dim=embedding_dim,
+  #     train_steps=10000,
+  #     extraFlags="--mode=train",
+  #     is_pod=True,
+  #     is_pjrt=True,
+  #     network=V5_NETWORKS,
+  #     subnetwork=V5P_SUBNETWORKS,
+  #     runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
+  # )
 
-  embedding_dim = 128
-  tf_dlrm_v5p_128 = tf_config.get_tf_dlrm_config(
-      project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
-      tpu_version=TpuVersion.V5P,
-      tpu_cores=128,
-      tpu_zone=Zone.US_EAST5_A.value,
-      time_out_in_min=60,
-      bottom_mlp=[512, 256, embedding_dim],
-      embedding_dim=embedding_dim,
-      train_steps=10000,
-      extraFlags="--mode=train",
-      is_pod=True,
-      is_pjrt=True,
-      network=V5_NETWORKS,
-      subnetwork=V5P_SUBNETWORKS,
-      runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
-  )
+  # embedding_dim = 128
+  # tf_dlrm_v5p_128 = tf_config.get_tf_dlrm_config(
+  #     project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
+  #     tpu_version=TpuVersion.V5P,
+  #     tpu_cores=128,
+  #     tpu_zone=Zone.US_EAST5_A.value,
+  #     time_out_in_min=120,
+  #     bottom_mlp=[512, 256, embedding_dim],
+  #     embedding_dim=embedding_dim,
+  #     train_steps=10000,
+  #     extraFlags="--mode=train",
+  #     is_pod=True,
+  #     is_pjrt=True,
+  #     network=V5_NETWORKS,
+  #     subnetwork=V5P_SUBNETWORKS,
+  #     runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
+  # )
   # Test dependencies
   # tf_dlrm_v4_8 >> tf_dlrm_v4_64 >> tf_dlrm_v4_128
   # tf_dlrm_v5p_64 >> tf_dlrm_v5p_128

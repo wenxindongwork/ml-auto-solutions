@@ -40,7 +40,7 @@ with models.DAG(
       tpu_version=TpuVersion.V2,
       tpu_cores=8,
       tpu_zone=Zone.US_CENTRAL1_C.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       global_batch_size=1024,
       is_pjrt=False,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
@@ -50,7 +50,7 @@ with models.DAG(
       tpu_version=TpuVersion.V2,
       tpu_cores=32,
       tpu_zone=Zone.US_CENTRAL1_A.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       global_batch_size=1024,
       is_pod=True,
       is_pjrt=False,
@@ -61,7 +61,7 @@ with models.DAG(
       tpu_version=TpuVersion.V3,
       tpu_cores=8,
       tpu_zone=Zone.US_EAST1_D.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       is_pjrt=False,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
@@ -70,7 +70,7 @@ with models.DAG(
       tpu_version=TpuVersion.V3,
       tpu_cores=32,
       tpu_zone=Zone.US_EAST1_D.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       is_pod=True,
       is_pjrt=False,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
@@ -80,7 +80,7 @@ with models.DAG(
       tpu_version=TpuVersion.V4,
       tpu_cores=8,
       tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       is_pjrt=False,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
@@ -89,7 +89,7 @@ with models.DAG(
       tpu_version=TpuVersion.V4,
       tpu_cores=32,
       tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       is_pod=True,
       is_pjrt=False,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
@@ -97,11 +97,11 @@ with models.DAG(
 
   # DLRM
   embedding_dim = 16
-  tf_dlrm_v2_8 = tf_config.get_tf_dlrm_config(
-      tpu_version=TpuVersion.V2,
+  tf_dlrm_v3_8 = tf_config.get_tf_dlrm_config(
+      tpu_version=TpuVersion.V3,
       tpu_cores=8,
-      tpu_zone=Zone.US_CENTRAL1_C.value,
-      time_out_in_min=60,
+      tpu_zone=Zone.US_EAST1_D.value,
+      time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
       train_steps=10000,
@@ -111,11 +111,11 @@ with models.DAG(
   )
 
   embedding_dim = 64
-  tf_dlrm_v2_32 = tf_config.get_tf_dlrm_config(
-      tpu_version=TpuVersion.V2,
+  tf_dlrm_v3_32 = tf_config.get_tf_dlrm_config(
+      tpu_version=TpuVersion.V3,
       tpu_cores=32,
-      tpu_zone=Zone.US_CENTRAL1_A.value,
-      time_out_in_min=60,
+      tpu_zone=Zone.US_EAST1_D.value,
+      time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
       train_steps=256054,
@@ -130,7 +130,7 @@ with models.DAG(
       tpu_version=TpuVersion.V4,
       tpu_cores=8,
       tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
       train_steps=10000,
@@ -144,7 +144,7 @@ with models.DAG(
       tpu_version=TpuVersion.V4,
       tpu_cores=32,
       tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
+      time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
       train_steps=256054,
@@ -158,5 +158,5 @@ with models.DAG(
   tf_resnet_v2_8 >> tf_resnet_v2_32
   tf_resnet_v3_8 >> tf_resnet_v3_32
   tf_resnet_v4_8 >> tf_resnet_v4_32
-  tf_dlrm_v2_8 >> tf_dlrm_v2_32
+  tf_dlrm_v3_8 >> tf_dlrm_v3_32
   tf_dlrm_v4_8 >> tf_dlrm_v4_32

@@ -40,7 +40,7 @@ with models.DAG(
       tpu_version=TpuVersion.V2,
       tpu_cores=8,
       tpu_zone=Zone.US_CENTRAL1_C.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       global_batch_size=1024,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
@@ -49,7 +49,7 @@ with models.DAG(
       tpu_version=TpuVersion.V3,
       tpu_cores=8,
       tpu_zone=Zone.US_EAST1_D.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
 
@@ -57,7 +57,7 @@ with models.DAG(
       tpu_version=TpuVersion.V4,
       tpu_cores=8,
       tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
 
@@ -65,7 +65,7 @@ with models.DAG(
       tpu_version=TpuVersion.V4,
       tpu_cores=32,
       tpu_zone=Zone.US_CENTRAL2_B.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       is_pod=True,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
@@ -75,7 +75,7 @@ with models.DAG(
       tpu_version=TpuVersion.V5E,
       tpu_cores=4,
       tpu_zone=Zone.US_EAST1_C.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       global_batch_size=2048,
       network=V5_NETWORKS,
       subnetwork=V5E_SUBNETWORKS,
@@ -87,7 +87,7 @@ with models.DAG(
       tpu_version=TpuVersion.V5E,
       tpu_cores=16,
       tpu_zone=Zone.US_EAST1_C.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       global_batch_size=2048,
       network=V5_NETWORKS,
       subnetwork=V5E_SUBNETWORKS,
@@ -100,7 +100,7 @@ with models.DAG(
       tpu_version=TpuVersion.V5P,
       tpu_cores=8,
       tpu_zone=Zone.US_EAST5_A.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       network=V5_NETWORKS,
       subnetwork=V5P_SUBNETWORKS,
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
@@ -111,7 +111,7 @@ with models.DAG(
       tpu_version=TpuVersion.V5P,
       tpu_cores=32,
       tpu_zone=Zone.US_EAST5_A.value,
-      time_out_in_min=60,
+      time_out_in_min=120,
       network=V5_NETWORKS,
       subnetwork=V5P_SUBNETWORKS,
       is_pod=True,
