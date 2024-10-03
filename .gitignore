@@ -24,3 +24,5 @@ tmp
 
 # Build artifacts
 *.whl
+
+airflow/

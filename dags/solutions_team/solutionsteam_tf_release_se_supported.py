@@ -125,7 +125,7 @@ with models.DAG(
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
 
-  embedding_dim = 64
+  embedding_dim = 16
   tf_dlrm_v4_8 = tf_config.get_tf_dlrm_config(
       tpu_version=TpuVersion.V4,
       tpu_cores=8,
