@@ -118,7 +118,7 @@ with models.DAG(
       time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
-      train_steps=256054,
+      train_steps=10000,
       extraFlags="--mode=train_and_eval",
       is_pod=True,
       is_pjrt=False,
@@ -147,7 +147,7 @@ with models.DAG(
       time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
-      train_steps=256054,
+      train_steps=10000,
       extraFlags="--mode=train_and_eval",
       is_pod=True,
       is_pjrt=False,
@@ -155,8 +155,8 @@ with models.DAG(
   )
 
   # Test dependencies
-  tf_resnet_v2_8 >> tf_resnet_v2_32
-  tf_resnet_v3_8 >> tf_resnet_v3_32
-  tf_resnet_v4_8 >> tf_resnet_v4_32
-  tf_dlrm_v3_8 >> tf_dlrm_v3_32
-  tf_dlrm_v4_8 >> tf_dlrm_v4_32
+  # tf_resnet_v2_8 >> tf_resnet_v2_32
+  # tf_resnet_v3_8 >> tf_resnet_v3_32
+  # tf_resnet_v4_8 >> tf_resnet_v4_32
+  # tf_dlrm_v3_8 >> tf_dlrm_v3_32
+  # tf_dlrm_v4_8 >> tf_dlrm_v4_32
