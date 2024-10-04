@@ -105,7 +105,7 @@ with models.DAG(
       time_out_in_min=240,
       bottom_mlp=[512, 256, embedding_dim],
       embedding_dim=embedding_dim,
-      train_steps=10000,
+      train_steps=2000,
       extraFlags="--mode=train",
       is_pod=True,
       is_pjrt=True,
@@ -114,7 +114,6 @@ with models.DAG(
       runtime_version=RuntimeVersion.V2_ALPHA_TPUV5.value,
   )
 
-4096 and 1024 for max_ids and max_uniques
   # embedding_dim = 64
   # tf_dlrm_v5p_64 = tf_config.get_tf_dlrm_config(
   #     project_name=Project.TPU_PROD_ENV_AUTOMATED.value,
