@@ -280,7 +280,7 @@ def get_tf_dlrm_config(
       "trainer": {
           "use_orbit": "true",
           "validation_interval": 90000,
-          "checkpoint_interval": 270000,
+          "checkpoint_interval": 0,
           "validation_steps": 5440,
           "train_steps": train_steps,
           "optimizer_config": {
