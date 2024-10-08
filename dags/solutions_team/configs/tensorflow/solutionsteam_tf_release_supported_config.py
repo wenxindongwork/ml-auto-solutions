@@ -28,10 +28,10 @@ from dags.vm_resource import TpuVersion, Project, RuntimeVersion
 MAJOR_VERSION = "2"
 MINOR_VERSION = "18"
 PATCH_VERSION = "0"
-RELEASE_CANDIDATE = "rc0"
+RELEASE_CANDIDATE = "rc1"
 LIBTPU_VERSION = "1.12.0"
 KERAS_VERSION = "2.18.0rc0"
-MODELS_BRANCH = "r2.18.0"
+MODELS_BRANCH = "v2.18.0-rc1"
 
 GS_VERSION_STR = f"tf-{MAJOR_VERSION}-{MINOR_VERSION}-{PATCH_VERSION}"
 
@@ -281,7 +281,7 @@ def get_tf_dlrm_config(
           "use_orbit": "true",
           "validation_interval": 90000,
           "checkpoint_interval": 0,
-          "validation_steps": 5440,
+          "validation_steps": 2000,
           "train_steps": train_steps,
           "optimizer_config": {
               "embedding_optimizer": "SGD",
